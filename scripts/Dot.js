@@ -6,6 +6,11 @@ class Dot {
     this.currentStep = 0;
     this.isDead = false;
     this.color = color || "grey";
+    this.collisionConsequences = {
+      wall: () => this.die(),
+      obstacle: () => this.die(),
+      goalDot: () => console.log("Hit the goal"),
+    };
   }
 
   get noMoreSteps() {
@@ -30,7 +35,9 @@ class Dot {
 
   getMutation(mutationRate) {
     const newSteps = [...this.steps];
-    for (let i = 0; i < Math.floor(this.steps.length * mutationRate); i++) {
+    const mutationAmount = Math.floor(this.steps.length * mutationRate);
+
+    for (let i = 0; i < mutationAmount; i++) {
       const randomIndex = Math.floor(Math.random() * this.steps.length);
       newSteps[randomIndex] = getRandomDirection();
     }
@@ -38,16 +45,14 @@ class Dot {
   }
 
   checkCollision() {
-    const { width, height } = getCanvasDimensions();
+    const collisions = Game.getAllCollisions();
 
-    if (
-      this.position.x >= width ||
-      this.position.x <= 0 ||
-      this.position.y >= height ||
-      this.position.y <= 0
-    ) {
-      this.die();
-    }
+    collisions.forEach((collision) => {
+      const { hasCollided, object } = collision(this.position);
+      if (hasCollided) {
+        this.collisionConsequences[object]();
+      }
+    });
   }
 
   die() {
