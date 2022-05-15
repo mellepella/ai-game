@@ -4,14 +4,15 @@ class Game {
   static goalDot = new GoalDot(unitsToPx(40), unitsToPx(15));
   static obstacles = [
     new Obstacle(
-      { x: unitsToPx(30), y: unitsToPx(13) },
+      { x: unitsToPx(20), y: unitsToPx(13) },
       { width: unitsToPx(2), height: unitsToPx(12) }
     ),
     new Obstacle(
-      { x: unitsToPx(30), y: unitsToPx(0) },
+      { x: unitsToPx(20), y: unitsToPx(0) },
       { width: unitsToPx(2), height: unitsToPx(13) }
     ),
   ];
+
   static currentPopulation = new Population(
     repeat(() => new Dot(getRandomSteps(500)), 500),
     0.6
@@ -41,6 +42,9 @@ class Game {
   }
 
   static getAllCollisions() {
+    const obstacleCollisions = this.obstacles.map(
+      (obstacle) => (position) => obstacle.checkCollision(position)
+    );
     const collisions = [
       (position) => {
         return {
@@ -58,13 +62,7 @@ class Game {
           object: "wall",
         };
       },
-      (position) => {
-        return this.obstacles[0].checkCollision(position);
-      },
-
-      (position) => {
-        return this.obstacles[1].checkCollision(position);
-      },
+      ...obstacleCollisions,
     ];
     return collisions;
   }
