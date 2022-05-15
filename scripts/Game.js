@@ -1,15 +1,19 @@
 class Game {
-  static UPDATE_RATE = 20;
+  static UPDATE_RATE = 1;
   static updateInterval;
-  static goalDot = new GoalDot(unitsToPx(40), unitsToPx(15));
+  static goalDot = new GoalDot(unitsToPx(45), unitsToPx(5));
   static obstacles = [
     new Obstacle(
-      { x: unitsToPx(20), y: unitsToPx(13) },
+      { x: unitsToPx(25), y: unitsToPx(13) },
       { width: unitsToPx(2), height: unitsToPx(12) }
     ),
     new Obstacle(
-      { x: unitsToPx(20), y: unitsToPx(0) },
+      { x: unitsToPx(15), y: unitsToPx(0) },
       { width: unitsToPx(2), height: unitsToPx(13) }
+    ),
+    new Obstacle(
+      { x: unitsToPx(35), y: unitsToPx(0) },
+      { width: unitsToPx(2), height: unitsToPx(12) }
     ),
   ];
 
