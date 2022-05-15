@@ -7,10 +7,14 @@ class Game {
       { x: unitsToPx(30), y: unitsToPx(13) },
       { width: unitsToPx(2), height: unitsToPx(12) }
     ),
+    new Obstacle(
+      { x: unitsToPx(30), y: unitsToPx(0) },
+      { width: unitsToPx(2), height: unitsToPx(13) }
+    ),
   ];
   static currentPopulation = new Population(
-    repeat(() => new Dot(getRandomSteps(5000)), 1),
-    1
+    repeat(() => new Dot(getRandomSteps(500)), 500),
+    0.6
   );
 
   static startUpdate() {
@@ -56,6 +60,10 @@ class Game {
       },
       (position) => {
         return this.obstacles[0].checkCollision(position);
+      },
+
+      (position) => {
+        return this.obstacles[1].checkCollision(position);
       },
     ];
     return collisions;
