@@ -1,7 +1,7 @@
 class Obstacle {
-  constructor(position = { x, y }) {
+  constructor(position = { x, y }, dimensions = { width, height }) {
     this.position = position;
-    this.size = unitsToPx(2);
+    this.dimensions = dimensions;
     this.color = "black";
   }
 
@@ -9,9 +9,9 @@ class Obstacle {
     return {
       hasCollided:
         position.x >= this.position.x &&
-        position.x <= this.position.x + this.size &&
+        position.x <= this.position.x + this.dimensions.width &&
         position.y >= this.position.y &&
-        position.y <= this.position.y + this.size,
+        position.y <= this.position.y + this.dimensions.height,
       object: "obstacle",
     };
   }
@@ -21,6 +21,11 @@ class Obstacle {
   }
 
   draw() {
-    fillRect(this.size, this.position, this.color);
+    fillRect(
+      this.dimensions.width,
+      this.dimensions.height,
+      this.position,
+      this.color
+    );
   }
 }

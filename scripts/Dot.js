@@ -1,7 +1,7 @@
 class Dot {
   constructor(steps, color) {
     this.steps = steps;
-    this.position = { x: unitsToPx(4), y: unitsToPx(10) };
+    this.position = { x: unitsToPx(5), y: unitsToPx(12) };
     this.size = unitsToPx(1);
     this.currentStep = 0;
     this.isDead = false;
@@ -60,7 +60,7 @@ class Dot {
   }
 
   draw() {
-    fillRect(this.size, this.position, this.color);
+    fillRect(this.size, this.size, this.position, this.color);
   }
 
   move() {

@@ -10,6 +10,6 @@ class GoalDot {
   }
 
   draw() {
-    fillRect(this.size, this.position, this.color);
+    fillRect(this.size, this.size, this.position, this.color);
   }
 }
