@@ -9,8 +9,8 @@ class Game {
     ),
   ];
   static currentPopulation = new Population(
-    repeat(() => new Dot(getRandomSteps(50)), 500),
-    0.6
+    repeat(() => new Dot(getRandomSteps(5000)), 1),
+    1
   );
 
   static startUpdate() {
@@ -47,9 +47,9 @@ class Game {
       (position) => {
         return {
           hasCollided:
-            position.x >= getCanvasDimensions.width ||
+            position.x >= getCanvasDimensions().width ||
             position.x <= 0 ||
-            position.y >= getCanvasDimensions.height ||
+            position.y >= getCanvasDimensions().height ||
             position.y <= 0,
           object: "wall",
         };
