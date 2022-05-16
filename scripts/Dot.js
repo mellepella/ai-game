@@ -1,7 +1,8 @@
 class Dot {
   constructor(steps, color) {
     this.steps = steps;
-    this.position = { x: unitsToPx(5), y: unitsToPx(17) };
+    this.startPosition = { x: unitsToPx(5), y: unitsToPx(5) };
+    this.position = { ...this.startPosition };
     this.size = unitsToPx(1);
     this.currentStep = 0;
     this.isDead = false;
@@ -30,7 +31,13 @@ class Dot {
   }
 
   getFitnessScore() {
-    return -Game.distanceToGoal(this.position);
+    // TODO: Get fitness score on update and compare
+    const maxDistance = Game.distanceToGoal(this.startPosition);
+    const maxSteps = this.steps.length;
+    const score =
+      -(Game.distanceToGoal(this.position) / maxDistance) +
+      this.currentStep / maxSteps;
+    return score;
   }
 
   getMutation(mutationRate) {

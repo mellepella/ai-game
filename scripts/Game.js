@@ -4,22 +4,26 @@ class Game {
   static goalDot = new GoalDot(unitsToPx(45), unitsToPx(15));
   static obstacles = [
     new Obstacle(
-      { x: unitsToPx(30), y: unitsToPx(13) },
-      { width: unitsToPx(2), height: unitsToPx(12) }
-    ),
-    new Obstacle(
-      { x: unitsToPx(20), y: unitsToPx(0) },
+      { x: unitsToPx(12), y: unitsToPx(13) },
       { width: unitsToPx(2), height: unitsToPx(13) }
     ),
     new Obstacle(
-      { x: unitsToPx(40), y: unitsToPx(0) },
+      { x: unitsToPx(27), y: unitsToPx(13) },
+      { width: unitsToPx(2), height: unitsToPx(12) }
+    ),
+    new Obstacle(
+      { x: unitsToPx(17), y: unitsToPx(0) },
+      { width: unitsToPx(2), height: unitsToPx(13) }
+    ),
+    new Obstacle(
+      { x: unitsToPx(32), y: unitsToPx(0) },
       { width: unitsToPx(2), height: unitsToPx(13) }
     ),
   ];
 
   static currentPopulation = new Population(
-    repeat(() => new Dot(getRandomSteps(200)), 500),
-    0.4
+    repeat(() => new Dot(getRandomSteps(150)), 1400),
+    0.07
   );
 
   static startUpdate() {
