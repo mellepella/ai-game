@@ -1,25 +1,25 @@
 class Game {
   static UPDATE_RATE = 1;
   static updateInterval;
-  static goalDot = new GoalDot(unitsToPx(45), unitsToPx(5));
+  static goalDot = new GoalDot(unitsToPx(45), unitsToPx(15));
   static obstacles = [
     new Obstacle(
-      { x: unitsToPx(25), y: unitsToPx(13) },
+      { x: unitsToPx(30), y: unitsToPx(13) },
       { width: unitsToPx(2), height: unitsToPx(12) }
     ),
     new Obstacle(
-      { x: unitsToPx(15), y: unitsToPx(0) },
+      { x: unitsToPx(20), y: unitsToPx(0) },
       { width: unitsToPx(2), height: unitsToPx(13) }
     ),
     new Obstacle(
-      { x: unitsToPx(35), y: unitsToPx(0) },
-      { width: unitsToPx(2), height: unitsToPx(12) }
+      { x: unitsToPx(40), y: unitsToPx(0) },
+      { width: unitsToPx(2), height: unitsToPx(13) }
     ),
   ];
 
   static currentPopulation = new Population(
-    repeat(() => new Dot(getRandomSteps(500)), 500),
-    0.6
+    repeat(() => new Dot(getRandomSteps(200)), 500),
+    0.4
   );
 
   static startUpdate() {
