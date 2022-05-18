@@ -42,11 +42,7 @@ class Game {
   }
 
   static distanceToGoal(pos = { x, y }) {
-    const deltas = {
-      x: this.goalDot.position.x - pos.x,
-      y: this.goalDot.position.y - pos.y,
-    };
-    return Math.abs(Math.sqrt(deltas.x ** 2 + deltas.y ** 2));
+    return this.goalDot.distanceTo(pos);
   }
 
   static getAllCollisions() {
@@ -54,22 +50,8 @@ class Game {
       (obstacle) => (position) => obstacle.checkCollision(position)
     );
     const collisions = [
-      (position) => {
-        return {
-          hasCollided: this.distanceToGoal(position) === 0,
-          object: "goalDot",
-        };
-      },
-      (position) => {
-        return {
-          hasCollided:
-            position.x >= getCanvasDimensions().width ||
-            position.x <= 0 ||
-            position.y >= getCanvasDimensions().height ||
-            position.y <= 0,
-          object: "wall",
-        };
-      },
+      (position) => this.goalDot.checkCollision(position),
+      (position) => getCanvasCollision(position),
       ...obstacleCollisions,
     ];
     return collisions;

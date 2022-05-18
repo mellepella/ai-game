@@ -15,3 +15,14 @@ function getCanvasDimensions() {
   const { width, height } = document.querySelector("canvas");
   return { width, height };
 }
+
+function getCanvasCollision(position = { x, y }) {
+  return {
+    hasCollided:
+      position.x >= getCanvasDimensions().width ||
+      position.x <= 0 ||
+      position.y >= getCanvasDimensions().height ||
+      position.y <= 0,
+    object: "wall",
+  };
+}

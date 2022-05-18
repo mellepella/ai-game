@@ -1,7 +1,7 @@
 class Dot {
   constructor(steps, color) {
     this.steps = steps;
-    this.startPosition = { x: unitsToPx(5), y: unitsToPx(5) };
+    this.startPosition = { x: unitsToPx(5), y: unitsToPx(10) };
     this.position = { ...this.startPosition };
     this.size = unitsToPx(1);
     this.currentStep = 0;
