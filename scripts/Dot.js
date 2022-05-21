@@ -7,7 +7,7 @@ class Dot {
     this.currentStep = 0;
     this.isDead = false;
     this.color = color || "grey";
-    this.bestFitnessScore;
+    this.bestDistanceScore;
     this.collisionConsequences = {
       wall: () => this.die(),
       obstacle: () => this.die(),
@@ -24,7 +24,7 @@ class Dot {
       this.move();
       this.checkCollision();
       this.draw();
-      this.updateBestFitnessScore();
+      this.updateBestDistanceScore();
 
       if (this.noMoreSteps) {
         this.die();
@@ -32,14 +32,20 @@ class Dot {
     }
   }
 
-  updateBestFitnessScore() {
-    const score = this.getFitnessScore();
-    if (this.bestFitnessScore < score || !this.bestFitnessScore) {
-      this.bestFitnessScore = score;
+  getFitnessScore() {
+    const maxSteps = this.steps.length;
+    const stepScore = this.currentStep / maxSteps;
+    return this.bestDistanceScore;
+  }
+
+  updateBestDistanceScore() {
+    const score = this.calculateDistanceScore();
+    if (this.bestDistanceScore < score || !this.bestDistanceScore) {
+      this.bestDistanceScore = score;
     }
   }
 
-  getFitnessScore() {
+  calculateDistanceScore() {
     const maxDistance = Game.distanceToGoal(this.startPosition);
     const score = -(Game.distanceToGoal(this.position) / maxDistance);
     return score;
