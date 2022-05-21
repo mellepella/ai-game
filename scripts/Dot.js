@@ -14,7 +14,6 @@ class Dot {
       obstacle: () => this.die(),
       goalDot: () => {
         this.hasWon = true;
-        console.log("Hit the goal");
         this.die();
       },
     };
@@ -63,7 +62,7 @@ class Dot {
     const maxDistance = Game.distanceToGoal(this.startPosition);
     const currentDistance = Game.distanceToGoal(this.position);
     const mutationRate = clampBetween(
-      currentDistance / maxDistance / 2,
+      currentDistance / maxDistance / 1.6,
       0.05,
       1
     );
