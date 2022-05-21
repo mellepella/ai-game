@@ -1,9 +1,13 @@
 class Population {
-  constructor(dots, mutationRate) {
+  constructor(dots) {
     this.dots = dots;
     this.stepsAmount = this.dots[0].steps.length;
     this.dotsAmount = dots.length;
-    this.mutationRate = mutationRate;
+    this.generation = 0;
+  }
+
+  get allDotsDead() {
+    return this.dots.every((dot) => dot.isDead);
   }
 
   update() {
@@ -19,10 +23,7 @@ class Population {
     );
     const winnerDot = sortedDots[0];
     const newDots = [
-      ...repeat(
-        () => winnerDot.getMutation(this.mutationRate),
-        this.dotsAmount - 1
-      ),
+      ...repeat(() => winnerDot.getMutation(), this.dotsAmount - 1),
       new Dot(winnerDot.steps, "red"),
     ];
     console.log(
@@ -32,9 +33,7 @@ class Population {
     );
 
     this.dots = newDots;
-  }
-
-  get allDotsDead() {
-    return this.dots.every((dot) => dot.isDead);
+    this.generation++;
+    console.log(`Generation: ${this.generation}`);
   }
 }

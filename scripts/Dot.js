@@ -40,7 +40,19 @@ class Dot {
     return score;
   }
 
-  getMutation(mutationRate) {
+  getMutationRate() {
+    const maxDistance = Game.distanceToGoal(this.startPosition);
+    const currentDistance = Game.distanceToGoal(this.position);
+    const mutationRate = clampBetween(
+      currentDistance / maxDistance / 2,
+      0.05,
+      1
+    );
+    return mutationRate;
+  }
+
+  getMutation() {
+    const mutationRate = this.getMutationRate();
     const newSteps = [...this.steps];
     const mutationAmount = Math.floor(this.steps.length * mutationRate);
 

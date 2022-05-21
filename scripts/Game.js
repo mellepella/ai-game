@@ -1,7 +1,7 @@
 class Game {
   static UPDATE_RATE = 1;
   static updateInterval;
-  static goalDot = new GoalDot(unitsToPx(45), unitsToPx(15));
+  static goalDot = new GoalDot(unitsToPx(40), unitsToPx(12));
   static obstacles = [
     new Obstacle(
       { x: unitsToPx(12), y: unitsToPx(13) },
@@ -22,8 +22,7 @@ class Game {
   ];
 
   static currentPopulation = new Population(
-    repeat(() => new Dot(getRandomSteps(150)), 1400),
-    0.07
+    repeat(() => new Dot(getRandomSteps(150)), 1400)
   );
 
   static startUpdate() {
