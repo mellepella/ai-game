@@ -41,10 +41,7 @@ class Dot {
 
   getFitnessScore() {
     const maxDistance = Game.distanceToGoal(this.startPosition);
-    const maxSteps = this.steps.length;
-    const score =
-      -(Game.distanceToGoal(this.position) / maxDistance) +
-      this.currentStep / maxSteps;
+    const score = -(Game.distanceToGoal(this.position) / maxDistance);
     return score;
   }
 
