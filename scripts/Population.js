@@ -19,7 +19,7 @@ class Population {
 
   mutateNextGen() {
     const sortedDots = this.dots.sort(
-      (a, b) => b.getFitnessScore() - a.getFitnessScore()
+      (a, b) => b.bestFitnessScore - a.bestFitnessScore
     );
     const winnerDot = sortedDots[0];
     const newDots = [
