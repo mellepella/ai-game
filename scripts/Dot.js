@@ -8,10 +8,15 @@ class Dot {
     this.isDead = false;
     this.color = color || "grey";
     this.bestDistanceScore;
+    this.hasWon = false;
     this.collisionConsequences = {
       wall: () => this.die(),
       obstacle: () => this.die(),
-      goalDot: () => console.log("Hit the goal"),
+      goalDot: () => {
+        this.hasWon = true;
+        console.log("Hit the goal");
+        this.die();
+      },
     };
   }
 
@@ -35,6 +40,9 @@ class Dot {
   getFitnessScore() {
     const maxSteps = this.steps.length;
     const stepScore = this.currentStep / maxSteps;
+    if (this.hasWon) {
+      return this.bestDistanceScore + (1 - stepScore);
+    }
     return this.bestDistanceScore;
   }
 

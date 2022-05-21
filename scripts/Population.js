@@ -27,9 +27,9 @@ class Population {
       new Dot(winnerDot.steps, "red"),
     ];
     console.log(
-      `Steps: ${winnerDot.currentStep}, Distance to goal: ${Game.distanceToGoal(
-        winnerDot.position
-      )}`
+      `Best score: ${winnerDot.getFitnessScore()}, Winner steps: ${
+        winnerDot.currentStep
+      }, Distance to goal: ${Game.distanceToGoal(winnerDot.position)}`
     );
 
     this.dots = newDots;
