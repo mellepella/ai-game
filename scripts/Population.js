@@ -26,14 +26,14 @@ class Population {
       ...repeat(() => winnerDot.getMutation(), this.dotsAmount - 1),
       new Dot(winnerDot.steps, "red"),
     ];
-    console.log(
-      `Best score: ${winnerDot.getFitnessScore()}, Winner steps: ${
-        winnerDot.currentStep
-      }, Distance to goal: ${Game.distanceToGoal(winnerDot.position)}`
-    );
-
     this.dots = newDots;
     this.generation++;
-    console.log(`Generation: ${this.generation}`);
+
+    UI.displayResults({
+      score: winnerDot.getFitnessScore(),
+      steps: winnerDot.currentStep,
+      distance: Game.distanceToGoal(winnerDot.position),
+      generation: this.generation,
+    });
   }
 }
