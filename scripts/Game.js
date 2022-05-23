@@ -4,7 +4,7 @@ class Game {
   static goalDot = new GoalDot(unitsToPx(40), unitsToPx(7));
   static obstacles = [
     new Obstacle(
-      { x: unitsToPx(12), y: unitsToPx(13) },
+      { x: unitsToPx(8), y: unitsToPx(13) },
       { width: unitsToPx(2), height: unitsToPx(13) }
     ),
     new Obstacle(
@@ -12,7 +12,7 @@ class Game {
       { width: unitsToPx(2), height: unitsToPx(12) }
     ),
     new Obstacle(
-      { x: unitsToPx(17), y: unitsToPx(0) },
+      { x: unitsToPx(13), y: unitsToPx(0) },
       { width: unitsToPx(2), height: unitsToPx(13) }
     ),
     new Obstacle(
