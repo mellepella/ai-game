@@ -22,7 +22,7 @@ class Game {
   ];
 
   static currentPopulation = new Population(
-    repeat(() => new Dot(getRandomSteps(150)), 2000)
+    repeat(() => new Dot(getRandomSteps(500)), 1500)
   );
 
   static startUpdate() {
