@@ -3,11 +3,11 @@ class Dot {
     this.steps = steps;
     this.startPosition = { x: unitsToPx(5), y: unitsToPx(10) };
     this.position = { ...this.startPosition };
+    this.bestPosition = { ...this.startPosition };
     this.size = unitsToPx(1);
     this.currentStep = 0;
     this.isDead = false;
     this.color = color || "grey";
-    this.bestDistanceScore;
     this.hasWon = false;
     this.collisionConsequences = {
       wall: () => this.die(),
@@ -28,7 +28,7 @@ class Dot {
       this.move();
       this.checkCollision();
       this.draw();
-      this.updateBestDistanceScore();
+      this.updateBestPosition();
 
       if (this.noMoreSteps) {
         this.die();
@@ -39,30 +39,34 @@ class Dot {
   getFitnessScore() {
     const maxSteps = this.steps.length;
     const stepScore = this.currentStep / maxSteps;
+    const bestDistanceScore = this.calculateDistanceScore(this.bestPosition);
     if (this.hasWon) {
-      return this.bestDistanceScore + (1 - stepScore);
+      return bestDistanceScore + (1 - stepScore);
     }
-    return this.bestDistanceScore;
+    return bestDistanceScore;
   }
 
-  updateBestDistanceScore() {
-    const score = this.calculateDistanceScore();
-    if (this.bestDistanceScore < score || !this.bestDistanceScore) {
-      this.bestDistanceScore = score;
+  updateBestPosition() {
+    const currentScore = this.calculateDistanceScore(this.position);
+    const bestScore = this.calculateDistanceScore(this.bestPosition);
+    if (currentScore > bestScore) {
+      this.bestPosition = this.position;
     }
   }
 
-  calculateDistanceScore() {
+  calculateDistanceScore(position) {
     const maxDistance = Game.distanceToGoal(this.startPosition);
-    const score = -(Game.distanceToGoal(this.position) / maxDistance);
+    const score = -(
+      Game.distanceToGoal(position ?? this.position) / maxDistance
+    );
     return score;
   }
 
   getMutationRate() {
     const maxDistance = Game.distanceToGoal(this.startPosition);
-    const currentDistance = Game.distanceToGoal(this.position);
+    const bestDistance = Game.distanceToGoal(this.bestPosition);
     const mutationRate = clampBetween(
-      currentDistance / maxDistance / 1.6,
+      bestDistance / maxDistance / 1.6,
       0.05,
       1
     );
