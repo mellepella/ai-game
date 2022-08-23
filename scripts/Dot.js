@@ -27,8 +27,8 @@ class Dot {
     if (!this.isDead) {
       this.move();
       this.checkCollision();
-      this.draw();
       this.updateBestPosition();
+      this.draw();
 
       if (this.noMoreSteps) {
         this.die();

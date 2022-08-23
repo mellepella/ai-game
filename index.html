@@ -15,6 +15,15 @@
     <button onclick="Game.startUpdate()">Start</button>
     <button onclick="Game.stopUpdate()">Stop</button>
     <p id="results"></p>
+    <label for="update-rate-input">Update rate ms (1 - 1000)</label>
+    <input
+      onchange="UI.onUpdateRateChange(event)"
+      name="update-rate-input"
+      type="number"
+      value="1"
+      max="1000"
+      min="1"
+    />
 
     <script src="scripts/tools/repeat.js"></script>
     <script src="scripts/UI.js"></script>
@@ -27,6 +36,7 @@
     <script src="scripts/GoalDot.js"></script>
     <script src="scripts/Dot.js"></script>
     <script src="scripts/Obstacle.js"></script>
+    <script src="scripts/GameObstacles.js"></script>
     <script src="scripts/Population.js"></script>
     <script src="scripts/Game.js"></script>
   </body>

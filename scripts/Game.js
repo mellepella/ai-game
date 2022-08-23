@@ -2,35 +2,29 @@ class Game {
   static UPDATE_RATE = 1;
   static updateInterval;
   static goalDot = new GoalDot(unitsToPx(40), unitsToPx(7));
-  static obstacles = [
-    new Obstacle(
-      { x: unitsToPx(8), y: unitsToPx(13) },
-      { width: unitsToPx(2), height: unitsToPx(13) }
-    ),
-    new Obstacle(
-      { x: unitsToPx(27), y: unitsToPx(13) },
-      { width: unitsToPx(2), height: unitsToPx(12) }
-    ),
-    new Obstacle(
-      { x: unitsToPx(13), y: unitsToPx(0) },
-      { width: unitsToPx(2), height: unitsToPx(13) }
-    ),
-    new Obstacle(
-      { x: unitsToPx(32), y: unitsToPx(0) },
-      { width: unitsToPx(2), height: unitsToPx(13) }
-    ),
-  ];
+  static obstacles = GameObstacles;
+  static isPlaying = false;
 
   static currentPopulation = new Population(
     repeat(() => new Dot(getRandomSteps(500)), 1500)
   );
 
   static startUpdate() {
+    this.isPlaying = true;
     this.updateInterval = setInterval(() => this.update(), this.UPDATE_RATE);
   }
 
   static stopUpdate() {
+    this.isPlaying = false;
     clearInterval(this.updateInterval);
+  }
+
+  static changeUpdateRate(rate) {
+    this.UPDATE_RATE = clampBetween(rate, 1, 1000);
+    if (this.isPlaying) {
+      this.stopUpdate();
+      this.startUpdate();
+    }
   }
 
   static update() {

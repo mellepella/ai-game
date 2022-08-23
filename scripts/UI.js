@@ -8,4 +8,8 @@ class UI {
       Generation: ${results.generation}
       `;
   }
+
+  static onUpdateRateChange({ target }) {
+    Game.changeUpdateRate(target.value);
+  }
 }
