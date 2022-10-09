@@ -1,1 +1,1 @@
-const config = { dotsStepsAmount: 300 };
+const config = { dotsStepsAmount: 500 };
