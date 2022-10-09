@@ -1,7 +1,7 @@
 function checkProcessingSpeedMs() {
   const test = () => {
     repeat(() => {
-      new Dot(getRandomSteps(500));
+      new Dot(getRandomSteps(config.dotsStepsAmount));
     }, 5000);
   };
   console.log("Checking processing speed...");
