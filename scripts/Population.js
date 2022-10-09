@@ -25,12 +25,6 @@ class Population {
       ...repeat(() => winnerDot.getMutation(), this.dotsAmount - 1),
       new Dot(winnerDot.steps, "red", winnerDot.bestPosition),
     ];
-    console.log(
-      winnerDot.inheritedBestPosition,
-      winnerDot.bestPosition,
-      winnerDot.position,
-      winnerDot.getMutationRate()
-    );
     this.dots = newDots;
     this.generation++;
 

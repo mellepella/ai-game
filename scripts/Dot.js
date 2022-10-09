@@ -51,7 +51,7 @@ class Dot {
     const currentScore = this.calculateDistanceScore(this.position);
     const bestScore = this.calculateDistanceScore(this.bestPosition);
     if (currentScore > bestScore) {
-      this.bestPosition = this.position;
+      this.bestPosition = { ...this.position };
     }
   }
 
