@@ -6,7 +6,7 @@ class Game {
   static isPlaying = false;
 
   static get populationSize() {
-    const populationSize = Math.round(checkProcessingSpeed() * 5);
+    const populationSize = Math.round(checkProcessingSpeed() / 5);
     console.log(`Game population size: ${populationSize}`);
     return populationSize;
   }
