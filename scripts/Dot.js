@@ -1,9 +1,10 @@
 class Dot {
-  constructor(steps, color) {
+  constructor(steps, color, inheritedBestPosition) {
     this.steps = steps;
     this.startPosition = { x: unitsToPx(5), y: unitsToPx(10) };
     this.position = { ...this.startPosition };
     this.bestPosition = { ...this.startPosition };
+    this.inheritedBestPosition = inheritedBestPosition ?? { x: null, y: null };
     this.size = unitsToPx(1);
     this.currentStep = 0;
     this.isDead = false;
@@ -63,10 +64,14 @@ class Dot {
   }
 
   getMutationRate() {
+    const hasRepeatedBestPosition =
+      this.inheritedBestPosition.x === this.bestPosition.x &&
+      this.inheritedBestPosition.y === this.bestPosition.y;
+    const bestPositionPenalty = hasRepeatedBestPosition ? 0.05 : 0;
     const maxDistance = Game.distanceToGoal(this.startPosition);
     const bestDistance = Game.distanceToGoal(this.bestPosition);
     const mutationRate = clampBetween(
-      bestDistance / maxDistance / 1.6,
+      bestDistance / maxDistance / 1.6 + bestPositionPenalty,
       0.05,
       1
     );
@@ -82,7 +87,7 @@ class Dot {
       const randomIndex = Math.floor(Math.random() * this.steps.length);
       newSteps[randomIndex] = getRandomDirection();
     }
-    return new Dot(newSteps, "grey");
+    return new Dot(newSteps, "grey", this.bestPosition);
   }
 
   checkCollision() {

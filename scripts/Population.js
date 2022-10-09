@@ -1,7 +1,6 @@
 class Population {
   constructor(dots) {
     this.dots = dots;
-    this.stepsAmount = this.dots[0].steps.length;
     this.dotsAmount = dots.length;
     this.generation = 0;
   }
@@ -24,8 +23,14 @@ class Population {
     const winnerDot = sortedDots[0];
     const newDots = [
       ...repeat(() => winnerDot.getMutation(), this.dotsAmount - 1),
-      new Dot(winnerDot.steps, "red"),
+      new Dot(winnerDot.steps, "red", winnerDot.bestPosition),
     ];
+    console.log(
+      winnerDot.inheritedBestPosition,
+      winnerDot.bestPosition,
+      winnerDot.position,
+      winnerDot.getMutationRate()
+    );
     this.dots = newDots;
     this.generation++;
 
