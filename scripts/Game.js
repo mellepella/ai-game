@@ -10,10 +10,10 @@ class Game {
   );
 
   static startUpdate() {
-    this.isPlaying = true;
     if (this.isPlaying) {
       this.stopUpdate();
     }
+    this.isPlaying = true;
     this.updateInterval = setInterval(() => this.update(), this.UPDATE_RATE);
   }
 
@@ -25,7 +25,6 @@ class Game {
   static changeUpdateRate(rate) {
     this.UPDATE_RATE = clampBetween(rate, 1, 1000);
     if (this.isPlaying) {
-      this.stopUpdate();
       this.startUpdate();
     }
   }
