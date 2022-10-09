@@ -1,5 +1,4 @@
-const UNITS_PER_WIDTH = 50;
-const UNIT_SIZE = getCanvasDimensions().width / UNITS_PER_WIDTH;
+const UNIT_SIZE = getCanvasDimensions().width / config.unitsPerWidth;
 
 function unitsToPx(units) {
   return units * UNIT_SIZE;
