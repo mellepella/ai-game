@@ -31,7 +31,7 @@ class Population {
     UI.displayResults({
       score: winnerDot.getFitnessScore(),
       steps: winnerDot.currentStep,
-      distance: Game.distanceToGoal(winnerDot.position),
+      distance: Game.distanceToGoal(winnerDot.bestPosition),
       generation: this.generation,
     });
   }
