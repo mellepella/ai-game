@@ -1,4 +1,4 @@
-function checkProcessingSpeed() {
+function checkProcessingSpeedMs() {
   const test = () => {
     repeat(() => {
       new Dot(getRandomSteps(500));
