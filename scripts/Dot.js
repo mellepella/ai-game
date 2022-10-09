@@ -67,7 +67,7 @@ class Dot {
     const hasRepeatedBestPosition =
       this.inheritedBestPosition.x === this.bestPosition.x &&
       this.inheritedBestPosition.y === this.bestPosition.y;
-    const bestPositionPenalty = hasRepeatedBestPosition ? 0.05 : 0;
+    const bestPositionPenalty = hasRepeatedBestPosition ? 0.02 : 0;
     const maxDistance = Game.distanceToGoal(this.startPosition);
     const bestDistance = Game.distanceToGoal(this.bestPosition);
     const mutationRate = clampBetween(

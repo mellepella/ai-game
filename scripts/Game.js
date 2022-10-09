@@ -1,12 +1,18 @@
 class Game {
   static UPDATE_RATE = 1;
   static updateInterval;
-  static goalDot = new GoalDot(unitsToPx(40), unitsToPx(7));
+  static goalDot = new GoalDot(unitsToPx(43), unitsToPx(5));
   static obstacles = GameObstacles;
   static isPlaying = false;
 
+  static get populationSize() {
+    const populationSize = Math.round(checkProcessingSpeed() * 5);
+    console.log(`Game population size: ${populationSize}`);
+    return populationSize;
+  }
+
   static currentPopulation = new Population(
-    repeat(() => new Dot(getRandomSteps(500)), 1500)
+    repeat(() => new Dot(getRandomSteps(500)), this.populationSize)
   );
 
   static startUpdate() {
