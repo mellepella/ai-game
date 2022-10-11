@@ -1,7 +1,7 @@
 class Dot {
   constructor(steps, color, inheritedBestPosition) {
     this.steps = steps;
-    this.startPosition = { x: unitsToPx(5), y: unitsToPx(10) };
+    this.startPosition = { x: unitsToPx(5), y: unitsToPx(25) };
     this.position = { ...this.startPosition };
     this.bestPosition = { ...this.startPosition };
     this.inheritedBestPosition = inheritedBestPosition ?? { x: null, y: null };

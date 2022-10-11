@@ -1,5 +1,5 @@
 const config = {
-  dotsStepsAmount: 400,
+  dotsStepsAmount: 500,
   unitsPerWidth: 100,
   noOfPopulations: 1,
   onlyDrawWinner: false,
