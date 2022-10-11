@@ -1,7 +1,12 @@
 class UI {
-  static displayResults(results = { score, steps, distance, generation }) {
-    const resultsParagraph = document.getElementById("results");
+  static displayResults(
+    results = { score, steps, distance, generation, populationNo }
+  ) {
+    const resultsParagraph = document.getElementById(
+      `results-population-${results.populationNo}`
+    );
     resultsParagraph.innerHTML = `
+      Population number: ${results.populationNo},
       Best score: ${results.score}, 
       Winner steps: ${results.steps}, 
       Distance to goal: ${results.distance}, 
@@ -11,5 +16,9 @@ class UI {
 
   static onUpdateRateChange({ target }) {
     Game.changeUpdateRate(target.value);
+  }
+
+  static onOnlyDrawWinnerChange({ target }) {
+    config.onlyDrawWinner = target.checked;
   }
 }

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI-game</title>
   </head>
-  <body>
+  <body style="background: rgb(186, 186, 186)">
     <canvas
       width="1000px"
       height="500px"
@@ -14,7 +14,12 @@
     ></canvas>
     <button onclick="Game.startUpdate()">Start</button>
     <button onclick="Game.stopUpdate()">Stop</button>
-    <p id="results"></p>
+    <p id="results-population-0"></p>
+    <p id="results-population-1"></p>
+    <p id="results-population-2"></p>
+    <p id="results-population-3"></p>
+    <p id="results-population-4"></p>
+
     <label for="update-rate-input">Update rate ms (1 - 1000)</label>
     <input
       onchange="UI.onUpdateRateChange(event)"
@@ -23,6 +28,14 @@
       value="1"
       max="1000"
       min="1"
+    />
+    <label for="only-show-winner-checkbox"
+      >Only show winner (will not be able to improve)</label
+    >
+    <input
+      onchange="UI.onOnlyDrawWinnerChange(event)"
+      id="only-show-winner-checkbox"
+      type="checkbox"
     />
 
     <script src="scripts/config.js"></script>

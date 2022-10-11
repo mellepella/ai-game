@@ -1,8 +1,9 @@
 class Population {
-  constructor(dots) {
+  constructor(dots, id) {
     this.dots = dots;
     this.dotsAmount = dots.length;
     this.generation = 0;
+    this.id = id;
   }
 
   get allDotsDead() {
@@ -21,10 +22,12 @@ class Population {
       (a, b) => b.getFitnessScore() - a.getFitnessScore()
     );
     const winnerDot = sortedDots[0];
-    const newDots = [
-      ...repeat(() => winnerDot.getMutation(), this.dotsAmount - 1),
-      new Dot(winnerDot.steps, "red", winnerDot.bestPosition),
-    ];
+    const newDots = config.onlyDrawWinner
+      ? [new Dot(winnerDot.steps, "red", winnerDot.bestPosition)]
+      : [
+          ...repeat(() => winnerDot.getMutation(), this.dotsAmount - 1),
+          new Dot(winnerDot.steps, "red", winnerDot.bestPosition),
+        ];
     this.dots = newDots;
     this.generation++;
 
@@ -33,6 +36,7 @@ class Population {
       steps: winnerDot.currentStep,
       distance: Game.distanceToGoal(winnerDot.bestPosition),
       generation: this.generation,
+      populationNo: this.id,
     });
   }
 }

@@ -5,21 +5,26 @@ class Game {
   static obstacles = GameObstacles;
   static isPlaying = false;
 
-  static get populationSize() {
+  static get populationsSize() {
     const desiredProcessSpeedMs = 1000;
-    const populationFactor = 2000;
+    const populationFactor = 1800 / config.noOfPopulations;
     const populationSize = Math.round(
       (desiredProcessSpeedMs / checkProcessingSpeedMs()) * populationFactor
     );
-    console.log(`Game population size: ${populationSize}`);
+    console.log(`Best fitted population size: ${populationSize}`);
     return populationSize;
   }
 
-  static currentPopulation = new Population(
-    repeat(
-      () => new Dot(getRandomSteps(config.dotsStepsAmount)),
-      this.populationSize
-    )
+  static currentPopulations = repeat(
+    (id) =>
+      new Population(
+        repeat(
+          () => new Dot(getRandomSteps(config.dotsStepsAmount)),
+          this.populationsSize
+        ),
+        id
+      ),
+    config.noOfPopulations
   );
 
   static startUpdate() {
@@ -44,7 +49,7 @@ class Game {
 
   static update() {
     clearCanvas();
-    this.currentPopulation.update();
+    this.currentPopulations.forEach((population) => population.update());
     this.obstacles.forEach((obstacle) => obstacle.update());
     this.goalDot.update();
   }
