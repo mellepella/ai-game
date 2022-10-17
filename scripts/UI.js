@@ -23,6 +23,6 @@ class UI {
   }
 
   static onMutationRateDenominatorChange({ target }) {
-    config.mutationRateDenominator = clampBetween(target.value, 0.01, 5);
+    config.mutationRateDenominator = clampBetween(target.value, 0.1, 5);
   }
 }
