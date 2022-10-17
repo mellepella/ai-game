@@ -9,6 +9,7 @@ const config = {
   mutationRateMin: 0.01,
 
   // Etc
+  applicationVersion: "2.1.1",
   updateRateMs: 1,
   unitsPerWidth: 100,
 };

@@ -25,4 +25,11 @@ class UI {
   static onMutationRateDenominatorChange({ target }) {
     config.mutationRateDenominator = clampBetween(target.value, 0.1, 5);
   }
+
+  static displayApplicationVersion() {
+    const versionParapgraph = document.getElementById("version");
+    const { applicationVersion } = config;
+
+    versionParapgraph.innerHTML = `Version: ${applicationVersion}`;
+  }
 }
