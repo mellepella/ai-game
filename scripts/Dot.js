@@ -71,15 +71,26 @@ class Dot {
     const maxDistance = Game.distanceToGoal(this.startPosition);
     const bestDistance = Game.distanceToGoal(this.bestPosition);
     const mutationRate = clampBetween(
-      bestDistance / maxDistance / 1.85 + bestPositionPenalty,
-      0.05,
+      bestDistance / maxDistance / config.mutationRateDenominator +
+        bestPositionPenalty,
+      config.mutationRateMin,
       1
     );
     return mutationRate;
   }
 
-  getMutation() {
+  getMutations(amount) {
     const mutationRate = this.getMutationRate();
+
+    return config.onlyDrawWinner
+      ? [new Dot(this.steps, "red", this.bestPosition)]
+      : [
+          ...repeat(() => this.getMutation(mutationRate), amount),
+          new Dot(this.steps, "red", this.bestPosition),
+        ];
+  }
+
+  getMutation(mutationRate) {
     const newSteps = [...this.steps];
     const mutationAmount = Math.floor(this.steps.length * mutationRate);
 

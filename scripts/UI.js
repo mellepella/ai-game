@@ -21,4 +21,8 @@ class UI {
   static onOnlyDrawWinnerChange({ target }) {
     config.onlyDrawWinner = target.checked;
   }
+
+  static onMutationRateDenominatorChange({ target }) {
+    config.mutationRateDenominator = clampBetween(target.value, 0.01, 5);
+  }
 }

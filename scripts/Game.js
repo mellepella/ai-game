@@ -1,7 +1,6 @@
 class Game {
-  static UPDATE_RATE = 1;
   static updateInterval;
-  static goalDot = new GoalDot(unitsToPx(95), unitsToPx(20));
+  static goalDot = new GoalDot(unitsToPx(95), unitsToPx(25));
   static obstacles = GameObstacles;
   static isPlaying = false;
 
@@ -32,7 +31,7 @@ class Game {
       this.stopUpdate();
     }
     this.isPlaying = true;
-    this.updateInterval = setInterval(() => this.update(), this.UPDATE_RATE);
+    this.updateInterval = setInterval(() => this.update(), config.updateRateMs);
   }
 
   static stopUpdate() {
@@ -41,7 +40,7 @@ class Game {
   }
 
   static changeUpdateRate(rate) {
-    this.UPDATE_RATE = clampBetween(rate, 1, 1000);
+    config.updateRateMs = clampBetween(rate, 1, 1000);
     if (this.isPlaying) {
       this.startUpdate();
     }

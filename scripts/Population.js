@@ -22,12 +22,7 @@ class Population {
       (a, b) => b.getFitnessScore() - a.getFitnessScore()
     );
     const winnerDot = sortedDots[0];
-    const newDots = config.onlyDrawWinner
-      ? [new Dot(winnerDot.steps, "red", winnerDot.bestPosition)]
-      : [
-          ...repeat(() => winnerDot.getMutation(), this.dotsAmount - 1),
-          new Dot(winnerDot.steps, "red", winnerDot.bestPosition),
-        ];
+    const newDots = winnerDot.getMutations(this.dotsAmount - 1);
     this.dots = newDots;
     this.generation++;
 
