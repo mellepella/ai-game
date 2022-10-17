@@ -1,6 +1,6 @@
 class Game {
   static updateInterval;
-  static goalDot = new GoalDot(unitsToPx(95), unitsToPx(25));
+  static goalDot = new GoalDot(unitsToPx(95), unitsToPx(22));
   static obstacles = GameObstacles;
   static isPlaying = false;
 
