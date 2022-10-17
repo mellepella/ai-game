@@ -31,6 +31,7 @@ class Population {
       steps: winnerDot.currentStep,
       distance: Game.distanceToGoal(winnerDot.bestPosition),
       generation: this.generation,
+      mutationRate: winnerDot.getMutationRate(),
       populationNo: this.id,
     });
   }

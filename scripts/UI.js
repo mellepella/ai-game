@@ -1,6 +1,6 @@
 class UI {
   static displayResults(
-    results = { score, steps, distance, generation, populationNo }
+    results = { score, steps, distance, generation, populationNo, mutationRate }
   ) {
     const resultsParagraph = document.getElementById(
       `results-population-${results.populationNo}`
@@ -9,6 +9,7 @@ class UI {
       Population number: ${results.populationNo},
       Best score: ${results.score}, 
       Winner steps: ${results.steps}, 
+      Mutation rate: ${results.mutationRate}, 
       Distance to goal: ${results.distance}, 
       Generation: ${results.generation}
       `;
