@@ -1,12 +1,12 @@
 class Game {
   static updateInterval;
-  static goalDot = new GoalDot(unitsToPx(95), unitsToPx(22));
+  static goalDot = new GoalDot(unitsToPx(95), unitsToPx(20));
   static obstacles = GameObstacles;
   static isPlaying = false;
 
   static get populationsSize() {
     const desiredProcessSpeedMs = 1000;
-    const populationFactor = 1800 / config.noOfPopulations;
+    const populationFactor = 2200 / config.noOfPopulations;
     const populationSize = Math.round(
       (desiredProcessSpeedMs / checkProcessingSpeedMs()) * populationFactor
     );

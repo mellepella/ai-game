@@ -81,13 +81,14 @@ class Dot {
 
   getMutations(amount) {
     const mutationRate = this.getMutationRate();
+    if (config.onlyDrawWinner) {
+      return [new Dot(this.steps, "red", this.bestPosition)];
+    }
 
-    return config.onlyDrawWinner
-      ? [new Dot(this.steps, "red", this.bestPosition)]
-      : [
-          ...repeat(() => this.getMutation(mutationRate), amount),
-          new Dot(this.steps, "red", this.bestPosition),
-        ];
+    return [
+      ...repeat(() => this.getMutation(mutationRate), amount),
+      new Dot(this.steps, "red", this.bestPosition),
+    ];
   }
 
   getMutation(mutationRate) {
